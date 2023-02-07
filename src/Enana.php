@@ -66,7 +66,6 @@ class Enana
     public function pocimaExtra(){
         #Única manera de devolver a la vida del limbo. Además se otorgarán 50 puntos de vida.
         $this->puntosVida += 50;
-        return $this->situacion = 'viva';
         if ($this->puntosVida < 0) {
             $this->situacion='muerta';
             return $this->puntosVida;
