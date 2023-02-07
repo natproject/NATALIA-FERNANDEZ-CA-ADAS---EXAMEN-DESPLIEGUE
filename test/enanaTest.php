@@ -9,21 +9,25 @@ class EnanaTest extends TestCase {
         #Se probará el efecto de una herida leve a una Enana con puntos de vida suficientes para sobrevivir al ataque
         #Se tendrá que probar que la vida es mayor que 0 y además que su situación es viva
         $objeto = new Enana('Filomena', 100, 'viva');
-        $this->assertEquals('viva', $objeto->heridaLeve());
+        $this->assertEquals(90, $objeto->heridaLeve());
+        $this->assertEquals('viva', $objeto->situacion);
     }
 
     public function testHeridaLeveMuere() {
         #Se probará el efecto de una herida leve a una Enana con puntos de vida insuficientes para sobrevivir al ataque
         #Se tendrá que probar que la vida es menor que 0 y además que su situación es muerta
         $objeto = new Enana('Filomena', 8, 'viva');
-        $this->assertEquals('muerta', $objeto->heridaLeve());
+        $this->assertEquals(-2, $objeto->heridaLeve());
+        $this->assertEquals('muerta', $objeto->situacion);
+
     }
 
     public function testHeridaGrave() {
         #Se probará el efecto de una herida grave a una Enana con una situación de viva.
         #Se tendrá que probar que la vida es 0 y además que su situación es limbo
         $objeto = new Enana('Filomena', 8, 'viva');
-        $this->assertEquals('limbo', $objeto->heridaGrave());
+        $this->assertEquals(0, $objeto->heridaGrave());
+        $this->assertEquals('limbo', $objeto->situacion);
 
     }
     
@@ -31,7 +35,8 @@ class EnanaTest extends TestCase {
         #Se probará el efecto de administrar una pócima a una Enana muerta pero con una vida mayor que -10 y menor que 0
         #Se tendrá que probar que la vida es mayor que 0 y que su situación ha cambiado a viva
         $objeto = new Enana('Filomena', -3, 'muerta');
-        $this->assertEquals('viva', $objeto->pocima());
+        $this->assertEquals(7, $objeto->pocima());
+        $this->assertEquals('viva', $objeto->situacion);
 
     }
 
@@ -39,8 +44,9 @@ class EnanaTest extends TestCase {
         #Se probará el efecto de administrar una pócima Extra a una Enana en el limbo.
         #Se tendrá que probar que la vida es 50 y la situación ha cambiado a viva.
         $objeto = new Enana('Filomena', 0, 'limbo');
-        $this->assertEquals('viva', $objeto->pocimaExtra());
-        
+        $this->assertEquals(50, $objeto->pocimaExtra());
+        $this->assertEquals('viva', $objeto->situacion);
+
     }
 }
 

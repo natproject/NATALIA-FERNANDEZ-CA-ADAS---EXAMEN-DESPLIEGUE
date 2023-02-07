@@ -19,21 +19,24 @@ class Enana
         $this->puntosVida -= 10;
         if ($this->puntosVida < 0) {
             $this->situacion='muerta';
+            return $this->puntosVida;
         }else if($this->puntosVida === 0){
             $this->situacion='limbo'; 
+            return $this->puntosVida;
         }else{
             $this->situacion='viva';
+            return $this->puntosVida;
         }
-        return $this->situacion;
     }
 
     public function heridaGrave(){
         #Se le quita toda la vida que posea hasta tener 0 puntos de vida y cambiarle la situacion a limbo
         if($this->situacion === 'muerta'){
-            return $this->situacion;
+            return $this->puntosVida;
         }else{
             $this->puntosVida = 0;
-            return $this->situacion='limbo'; 
+            $this->situacion='limbo'; 
+            return $this->puntosVida;
         }
 
     }
@@ -43,19 +46,20 @@ class Enana
         #Si la Enana está en el limbo, la pocima no le afecta, seguirá en el limbo con 0 puntos de vida.
         #Solo pocimaExtra puede rescatarla del limbo.
         if($this->situacion === 'limbo'){
-            return $this->situacion;
+            return $this->puntosVida;
         }else{
             $this->puntosVida += 10;
             if ($this->puntosVida < 0) {
                 $this->situacion='muerta';
+                return $this->puntosVida;
             }else if($this->puntosVida === 0){
                 $this->situacion='limbo'; 
+                return $this->puntosVida;
             }else{
                 $this->situacion='viva';
+                return $this->puntosVida;
             }
-            return $this->situacion;
         }
-
         
     }
 
@@ -65,11 +69,14 @@ class Enana
         return $this->situacion = 'viva';
         if ($this->puntosVida < 0) {
             $this->situacion='muerta';
+            return $this->puntosVida;
         }else if($this->puntosVida === 0){
             $this->situacion='limbo'; 
+            return $this->puntosVida;
         }else{
             $this->situacion='viva';
+            return $this->puntosVida;
         }
-        return $this->situacion;
+
     }
 }
